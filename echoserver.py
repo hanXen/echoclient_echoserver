@@ -28,7 +28,7 @@ def start_server(server_socket,opt_b):
 	print("+++ Press Ctrl-C to close server +++")
 	try:
 		while True:
-			print("listening for connection")
+			print("listening for connection...")
 			(client_socket,addr) = server_socket.accept()
 			clients_list.append(client_socket)
 			print("***",addr,"connected ***")
@@ -60,7 +60,7 @@ def main():
 	server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
 	server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	server_socket.bind(('127.0.0.1',port))
-	server_socket.listen(5)
+	server_socket.listen(10)
 
 	start_server(server_socket,opt_b)
 
