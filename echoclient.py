@@ -28,7 +28,6 @@ def start_client(client_socket ,addr):
 	print("+++ Hello, Client +++")
 	print('+++ Press Ctrl-C or Enter "exit plz" to exit program +++')
 	print("***",addr, "connected ***")
-
 	try:
 		t = threading.Thread(target = check_receive, args = (client_socket,))
 		t.daemon = True
@@ -40,7 +39,6 @@ def start_client(client_socket ,addr):
 			if(data == "exit plz"):
 				break
 			time.sleep(0.1)		
-
 	except KeyboardInterrupt:
 		pass
 
@@ -55,6 +53,7 @@ def main():
 		print("Syntax: echoclient <host> <port>")
 		print("Sample: echoclient 127.0.0.1 6969")
 		sys.exit(1)
+		
 	host = sys.argv[1]
 	port = int(sys.argv[2])
 	addr = (host,port)

@@ -18,7 +18,6 @@ def lis(client_socket,addr,opt_b):
 		else:
 			print(data)
 			client_socket.send(data.encode())
-
 	print("***",addr,"disconnected***")
 	clients_list.remove(client_socket)
 	client_socket.close()
@@ -34,16 +33,13 @@ def start_server(server_socket,opt_b):
 			print("***",addr,"connected ***")
 			t = threading.Thread(target = lis, args = (client_socket,addr,opt_b))
 			t.start()
-
 	except KeyboardInterrupt:
 		print("\n--- Server Closed ---")
 		for client in clients_list:
 			client.send("terminate".encode())
 			client.close()
-
 		server_socket.close()
 		sys.exit(1)
-
 
 def main():
 	opt_b = False
@@ -56,15 +52,12 @@ def main():
 		sys.exit(1)
 
 	port = int(sys.argv[1])
-
 	server_socket = socket.socket(socket.AF_INET , socket.SOCK_STREAM)
 	server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 	server_socket.bind(('127.0.0.1',port))
 	server_socket.listen(10)
 
 	start_server(server_socket,opt_b)
-
-	server_socket.close()
 
 if __name__ == '__main__':
 	main()
